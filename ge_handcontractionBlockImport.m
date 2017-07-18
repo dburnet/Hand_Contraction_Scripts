@@ -14,6 +14,8 @@ function ge_handcontractionBlockImport(files, outfile)
 % Version 0.8.3
 
     fid = fopen(outfile,'w');
+    fprintf(fid, '%6s, %12s, %18s, %24s, %30s, %36s, %42s, %48s, %54s, %60s, %66s,%72s, %78s,%84s, %90s, %96s, %102s, %108s\r\n\, ','Filename,SubjectNumber,SessionNumber,Hand,PreAF3/4,PreF7/8,PreF3/4,PreFC5/6,PreT7/8,PreP7/8,PreO1/2,PostAF3/4,PostF7/8,PostF3/4,PostFC5/6,PostT7/8,PostP7/8,PostO1/2' );
+    fprintf(fid, '\n')
     for file = files'
         file.name
         % Subject and condition data:
@@ -25,7 +27,7 @@ function ge_handcontractionBlockImport(files, outfile)
         % Data analysis to get AIS's:
         x = ge_handContraction(file.name);
         % Write the "obvious" data to the file
-        fprintf(fid, '%s,%s,%s,%s,', subnum, sessionnumber, handorder, file.name);
+        fprintf(fid, '%s,%s,%s,%s,',  file.name, subnum, sessionnumber, handorder);
         fprintf(fid, '%f,%f,%f,%f,%f,%f,%f,', x{3});
         fprintf(fid, '%f,%f,%f,%f,%f,%f,%f\n', x{5});
       
